@@ -1,7 +1,11 @@
 $( document ).ready( function() {
 
 	var entries = [
+<<<<<<< HEAD
 		{ image: './include/images/JavaScript-logo.png', width: '50', height: '50', url: 'http://niklasknaack.blogspot.de/', target: '_top'},
+=======
+		{ image: './include/images/JavaScript-logo.PNG', width: '50', height: '50', url: 'http://niklasknaack.blogspot.de/', target: '_top'},
+>>>>>>> 9a26bb69693eba154c7c3789b5b3e95a24f9dcdd
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "HTML", url: '', target: '_top'},
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "CSS", url: '', target: '_top'},
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "Gitlab", url: '', target: '_top'},
@@ -9,8 +13,13 @@ $( document ).ready( function() {
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "Python", url: '', target: '_top'},
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "Laravel", url: '', target: '_top'},
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "Symphony", url: '', target: '_top'},
+<<<<<<< HEAD
 		{ image: './include/images/django-logo.svg', width: '50', height: '50', url: '', target: '_top'},
 		{ image: './include/images/java-logo.png', width: '60', height: '60', url: '', target: '_top'},
+=======
+		{ image: './include/images/django-logo.SVG', width: '50', height: '50', url: '', target: '_top'},
+		{ image: './include/images/java-logo.PNG', width: '60', height: '60', url: '', target: '_top'},
+>>>>>>> 9a26bb69693eba154c7c3789b5b3e95a24f9dcdd
 		{ image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', width: '50', height: '50', label: "C", url: '', target: '_top'},
 	]
 	
