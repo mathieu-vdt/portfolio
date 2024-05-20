@@ -1,5 +1,9 @@
 <script lang="ts">
-import { ref, computed, watch } from 'vue'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  // Your component options here
+})
 </script>
 
 <template>
