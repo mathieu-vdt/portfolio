@@ -1,5 +1,23 @@
 <script lang="ts">
 import { ref, computed, watch } from 'vue'
+import { pictures } from '../utilities/pictures'
+
+export default {
+  data() {
+    return {
+      pictures
+    }
+  },
+  computed: {
+    waveStyle() {
+      return {
+        background: `url(${this.pictures.wave}) repeat-x`,
+        backgroundSize: '200% 100%',
+        animation: 'wave 20s infinite linear alternate-reverse'
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -12,7 +30,7 @@ import { ref, computed, watch } from 'vue'
       <button class="contact-me">Contact me</button>
     </div>
     <div class="profile">
-      <img src="../assets/me.png" alt="" />
+      <img :src="pictures.me" alt="" />
       <div class="presentation">
         <p class="im">
           Hi! I’m <br />
@@ -23,9 +41,9 @@ import { ref, computed, watch } from 'vue'
         </p>
       </div>
     </div>
-    <div class="wave-top"></div>
-    <div class="wave-mid"></div>
-    <div class="wave-bottom"></div>
+    <div class="wave-top" :style="waveStyle"></div>
+    <div class="wave-mid" :style="waveStyle"></div>
+    <div class="wave-bottom" :style="waveStyle"></div>
   </div>
 </template>
 
@@ -121,9 +139,6 @@ import { ref, computed, watch } from 'vue'
     top: -10%;
     width: 100%;
     height: 100vh;
-    background: url('../assets/wave.svg') repeat-x;
-    background-size: 200% 100%; /* Adjust background size */
-    animation: wave 20s infinite linear alternate-reverse;
   }
 
   .wave-top {

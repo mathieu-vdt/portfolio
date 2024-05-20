@@ -1,5 +1,6 @@
-<script lang="ts" setup>
+<script lang="ts">
 import { ref, computed, watch } from 'vue'
+import { pictures } from '../../utilities/pictures'
 
 let menuOpen = ref(false)
 let isMobile = computed(() => window.innerWidth <= 768)
@@ -9,12 +10,21 @@ watch(isMobile, (newValue) => {
     menuOpen.value = true
   }
 })
+
+export default {
+  data() {
+    return {
+      pictures,
+      menuOpen: false // Add this line
+    }
+  }
+}
 </script>
 
 <template>
   <nav>
     <div class="logo">
-      <img src="../../assets/logo.png" alt="Logo" />
+      <img :src="pictures.logo" alt="Logo" />
       Portfolio
     </div>
     <ul :class="{ 'slide-in': menuOpen }">
