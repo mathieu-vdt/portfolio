@@ -134,6 +134,7 @@ nav {
       padding-top: 50px;
       transform: translateX(-100vw);
       position: fixed;
+      z-index: 1000;
 
       a {
         padding: 20px;
@@ -170,6 +171,7 @@ nav {
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 1000;
       font-size: 1.5em;
     }
 
