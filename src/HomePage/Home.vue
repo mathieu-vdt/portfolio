@@ -30,7 +30,7 @@ export default {
       <button class="contact-me">Contact me</button>
     </div>
     <div class="profile">
-      <!-- <img :src="pictures.me" alt="" /> -->
+      <img :src="pictures.me" alt="" />
       <div class="presentation">
         <p class="im">
           Hi! I’m <br />
