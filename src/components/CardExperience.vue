@@ -1,7 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Card from 'primevue/card';
 
 export default defineComponent({
+  name: 'CardExperience',
+  components: {
+    Card
+  },
   props: {
     title: {
       type: String,
@@ -23,116 +28,73 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="card">
-    <div class="left">
-      <svg
-        width="38"
-        height="26"
-        viewBox="0 0 38 26"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          width="38"
-          height="26"
-          rx="12"
-          fill="url(#paint0_linear_612_33)"
-          fill-opacity="0.61"
-        />
-        <defs>
-          <linearGradient
-            id="paint0_linear_612_33"
-            x1="33.2"
-            y1="-1.11362e-07"
-            x2="-2.97556"
-            y2="32.6881"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#D28BFC" />
-            <stop offset="1" stop-color="#7FF4D8" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="right">
-      <div class="card-header">
-        <!-- <img src="@/assets/gradient.png" alt="gradient" class="card-image" /> -->
-        <div class="card-title">
-          <h2>{{ title }}</h2>
-          <p>{{ status }}</p>
-        </div>
-        <div class="card-date">
-          <p>{{ date }}</p>
+  <Card>
+    <template #content>
+      <div class="content">
+        <svg width="68" height="46" viewBox="0 0 68 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="68" height="46" rx="12" fill="url(#paint0_linear_612_33)" fill-opacity="0.61"/>
+          <defs>
+            <linearGradient id="paint0_linear_612_33" x1="63.2" y1="-1.11362e-07" x2="-2.97556" y2="32.6881" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#D28BFC"/>
+              <stop offset="1" stop-color="#7FF4D8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div>
+          <div class="header">
+            <div class="left">
+              <p class="title">{{ title }}</p>
+              <p class="status">{{ status }}</p>
+            </div>
+            <div class="right">
+              <p class="date">{{ date }}</p>
+            </div>
+          </div>
+          <p class="description">
+            {{ description }}
+          </p>
         </div>
       </div>
-      <div class="card-body">
-        <p>{{ description }}</p>
-      </div>
-    </div>
-  </div>
+    </template>
+</Card>
+  
 </template>
 
-<style scoped>
-.card {
-  width: 400px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  background-color: white;
+<style scoped lang="scss">
+.content{
   display: flex;
   flex-direction: row;
-  font-family: Arial, sans-serif;
+  column-gap: 20px;
+  
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
 
-  .left {
-    padding-top: 4px;
+    .title{
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
   }
-
-  .right {
-    width: inherit;
-    margin-left: 15px;
-    .card-header {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
+}
+@media screen and (max-width: 600px) {
+  .content{
+    svg{
+      display: none;
     }
-
-    .card-image {
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-    }
-
-    .card-title {
-      flex: 1;
-
-      p {
-        margin: 0;
-        font-size: 12px;
-        color: gray;
+    .header{
+      .title{
+        font-size: 1rem;
       }
-      h2 {
-        margin: 0;
-        font-size: 20px;
-        font-weight: bold;
+      .date, .status{
+        font-size: 0.8rem;
       }
     }
-
-    .card-date {
-      font-size: 12px;
-      color: gray;
-
-      p {
-        padding-top: 4px;
+    .description{
+        font-size: 0.8rem;
       }
-    }
-
-    .card-body {
-      margin-top: 15px;
-      p {
-        margin: 0;
-        font-size: 14px;
-      }
-    }
   }
 }
 </style>

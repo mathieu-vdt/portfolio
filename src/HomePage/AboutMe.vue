@@ -2,21 +2,14 @@
 import { defineComponent } from 'vue'
 import TitleNumber from '../components/TitleNumber.vue'
 import CardExperience from '../components/CardExperience.vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/swiper-bundle.css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import { Navigation, Pagination } from 'swiper/modules'
-import SwiperCore from 'swiper'
-
-SwiperCore.use([Navigation, Pagination])
+import Carousel from 'primevue/carousel'
+import { pictures } from '@/utilities/pictures'
 
 export default {
   components: {
     TitleNumber,
     CardExperience,
-    Swiper,
-    SwiperSlide
+    Carousel
   },
   data() {
     return {
@@ -45,7 +38,31 @@ export default {
           date: '2022 - 2024',
           description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.'
         }
-      ]
+      ],
+      responsiveOptions: [
+        {
+            breakpoint: '1400px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '1199px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '745px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '575px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ],
+    pictures
+
     }
   }
 }
@@ -53,95 +70,62 @@ export default {
 
 <template>
   <div id="about-me">
+    <img :src="pictures.triangle" alt="triangle" class="triangle" />
+    <img :src="pictures.triangle_o" alt="triangle" class="triangle_o" />
     <TitleNumber number="01" title="About me" />
     <p class="description">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis ea quas cumque, assumenda
       eligendi repudiandae magni i.
     </p>
-    <div class="cards">
-      <Swiper
-        class="mySwiper"
-        :pagination="{ clickable: true }"
-        :navigation="true"
-        :breakpoints="{
-          // when window width is >= 320px
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 10
-          },
-          881: {
-            slidesPerView: 2,
-            spaceBetween: 20
-          },
-          1291: {
-            slidesPerView: 3,
-            spaceBetween: 20
-          }
-        }"
-      >
-        <SwiperSlide
-          v-for="(experience, index) in experiences"
-          :key="index"
-          :class="{ 'first-slide': index === 0 }"
-        >
-          <CardExperience
-            :title="experience.title"
-            :status="experience.status"
-            :date="experience.date"
-            :description="experience.description"
-          />
-        </SwiperSlide>
-      </Swiper>
-    </div>
+    
+    <Carousel :value="experiences" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions">
+      <template #item="slotProps">
+        <CardExperience
+              :title="slotProps.data.title"
+              :status="slotProps.data.status"
+              :date="slotProps.data.date"
+              :description="slotProps.data.description"
+              class="card-experience"
+            />
+      </template>
+  </Carousel>
   </div>
 </template>
 
-<style lang="scss">
-#about-me {
-  background: linear-gradient(0, #f3f3f3 0%, #ffffff 100%);
-  height: 500px;
-  width: 100%;
-  padding: 40px;
-  color: var(--black);
+<style lang="scss" scoped>
+  #about-me {
+    background: linear-gradient(0, #f3f3f3 0%, #ffffff 100%);
+    height: 500px;
+    width: 100%;
+    padding: 40px;
+    color: var(--black);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 
-  .description {
-    font-size: 1.2em;
-    font-weight: 400;
-    width: 50%;
-    margin-bottom: 20px;
-  }
+    .triangle{
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      top: -30px;
+    }
 
-  .cards {
-    // display: flex;
-    // column-gap: 20px;
-    // overflow-x: auto;
-    .mySwiper {
-      .swiper-slide {
-        width: auto;
-
-        &.first-slide {
-          margin-left: 70px; // Ajustez cette valeur selon vos besoins
-        }
-      }
-
-      .swiper-button-next {
-        padding-bottom: 40px;
-      }
-      .swiper-button-prev {
-        padding-bottom: 40px;
-      }
-
-      .swiper-pagination {
-        position: relative;
-        padding-top: 20px;
-      }
-
-      .swiper-pagination-bullet {
-        margin: 0 4px; // Ajustez l'espacement entre les indicateurs si nécessaire
-      }
+    .triangle_o{
+      position: absolute;
+      z-index: -1;
+      left: 40%;
+      top: 0;
+    }
+    .description {
+      font-size: 1.2em;
+      font-weight: 400;
+      width: 50%;
+      margin-bottom: 20px;
+    }
+    .card-experience {
+      margin: 0 20px; /* Adjust as needed */
     }
   }
-}
 
 @media screen and (max-width: 900px) {
   #about-me {
@@ -156,16 +140,6 @@ export default {
     padding: 20px;
     .description {
       width: 100%;
-    }
-
-    .mySwiper {
-      .swiper-slide {
-        width: auto;
-
-        &.first-slide {
-          margin-left: 0px; // Ajustez cette valeur selon vos besoins
-        }
-      }
     }
   }
 }
